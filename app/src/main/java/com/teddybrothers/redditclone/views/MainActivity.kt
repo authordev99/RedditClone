@@ -1,7 +1,8 @@
-package com.teddybrothers.redditclone
+package com.teddybrothers.redditclone.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.teddybrothers.redditclone.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

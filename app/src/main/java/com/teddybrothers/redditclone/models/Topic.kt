@@ -1,8 +1,11 @@
 package com.teddybrothers.redditclone.models
 
+import java.util.*
+
 class Topic {
-    val description = ""
-    val isUpVote = false
-    val isDownVote = false
-    val voteCount = 0
+    var id = UUID.randomUUID().toString()
+    var description = ""
+    var isVoteUp = false
+    var isVoteDown = false
+    var voteCount = 0
 }

@@ -9,11 +9,14 @@ import com.teddybrothers.redditclone.R
 import com.teddybrothers.redditclone.databinding.ListItemLoadingBinding
 import com.teddybrothers.redditclone.databinding.ListItemTopicBinding
 import com.teddybrothers.redditclone.models.Topic
+import com.teddybrothers.redditclone.viewmodels.TopicViewModel
 
 
 class RecyclerviewAdapter(private val listener: RecyclerViewListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
     private var topicList = ArrayList<Topic>()
+    private lateinit var topicViewModel : TopicViewModel
     private val VIEW_TYPE_LOADING = 0
     private val VIEW_TYPE_NORMAL = 1
     private var isLoaderVisible = false
@@ -69,9 +72,9 @@ class RecyclerviewAdapter(private val listener: RecyclerViewListener) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val Topic = this.topicList[position]
+        val topic = this.topicList[position]
         if (holder is MainViewHolder) {
-            holder.updateData(Topic)
+            holder.bindingData(topic,topicViewModel)
         }
     }
 
@@ -79,28 +82,33 @@ class RecyclerviewAdapter(private val listener: RecyclerViewListener) :
         return topicList.size
     }
 
-    fun addItems(TopicList: List<Topic>?) {
-        if (!TopicList.isNullOrEmpty()) {
-            this.topicList.addAll(TopicList)
+    fun addViewModel(topicViewModel: TopicViewModel) {
+        this.topicViewModel = topicViewModel
+    }
+
+    fun addItems(topicList: List<Topic>?) {
+        if (!topicList.isNullOrEmpty()) {
+            this.topicList.addAll(topicList)
         }
         notifyDataSetChanged()
     }
 
 
-    class MainViewHolder(val binding: ListItemTopicBinding, listener: RecyclerViewListener) :
-        RecyclerView.ViewHolder(binding.root) {
-        private lateinit var topic: Topic
+
+    class MainViewHolder(private val binding: ListItemTopicBinding, listener: RecyclerViewListener) : RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var topicData: Topic
 
         init {
             itemView.setOnClickListener {
-                listener.onClickListener(topic, layoutPosition)
+                listener.onTopicClickListener(topicData, layoutPosition)
             }
         }
 
-
-        fun updateData(topic: Topic) {
-            this.topic = topic
-            binding.topic = topic
+        fun bindingData(topic: Topic,topicViewModel: TopicViewModel) {
+            this.topicData = topic
+            binding.topic = topicData
+            binding.topicViewModel = topicViewModel
         }
     }
 

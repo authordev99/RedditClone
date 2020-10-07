@@ -12,8 +12,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
+        android:background="@color/colorLightGrey"
         tools:itemCount="20"
         tools:listitem="@layout/list_item_topic"/>
 

@@ -65,8 +65,14 @@ class MainActivity : AppCompatActivity(), RecyclerViewListener, View.OnClickList
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == REQUEST_CODE_CREATE_TOPIC || requestCode == REQUEST_CODE_DETAIL_TOPIC) {
+        if (resultCode != Activity.RESULT_OK)
+            return
+
+        if (requestCode == REQUEST_CODE_CREATE_TOPIC) {
             setupList()
+        } else if (requestCode == REQUEST_CODE_DETAIL_TOPIC) {
+            val topic = Gson().fromJson(data?.getStringExtra(PARAM_TOPIC), Topic::class.java)
+            recyclerviewAdapter.updateItem(topic)
         }
     }
 

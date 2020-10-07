@@ -2,8 +2,9 @@ package com.teddybrothers.redditclone.views
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.teddybrothers.redditclone.R
@@ -13,7 +14,8 @@ import kotlinx.android.synthetic.main.activity_create_topic.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.koin.android.ext.android.inject
 
-class CreateTopicActivity : AppCompatActivity(), View.OnClickListener {
+
+class CreateTopicActivity : AppCompatActivity() {
 
     private val topicViewModel by inject<TopicViewModel>()
 
@@ -37,7 +39,6 @@ class CreateTopicActivity : AppCompatActivity(), View.OnClickListener {
             setHomeButtonEnabled(true)
             title = "Text Post"
         }
-        post.setOnClickListener(this)
 
         topicDescription.doOnTextChanged { text, _, _, _ ->
             topicDescriptionLength.text = (255 - text!!.length).toString()
@@ -45,11 +46,10 @@ class CreateTopicActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    override fun onClick(v: View?) {
-        val itemId = v?.id
-        if (itemId == R.id.post) {
-            val topicTitle = topicTitle.text.toString()
-            val topicDescription = topicDescription.text.toString()
+    private fun postTopic() {
+        val topicTitle = topicTitle.text.toString()
+        val topicDescription = topicDescription.text.toString()
+        if (topicTitle.isNotEmpty()) {
             val topic = Topic().apply {
                 title = topicTitle
                 description = topicDescription
@@ -57,7 +57,16 @@ class CreateTopicActivity : AppCompatActivity(), View.OnClickListener {
             topicViewModel.createTopic(topic)
             setResult(Activity.RESULT_OK)
             finish()
+        } else {
+            Toast.makeText(this, "Enter your title", Toast.LENGTH_SHORT).show()
         }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu_post, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -65,6 +74,8 @@ class CreateTopicActivity : AppCompatActivity(), View.OnClickListener {
         if (itemId == android.R.id.home) // Press Back Icon
         {
             finish()
+        } else if (itemId == R.id.post) {
+            postTopic()
         }
         return super.onOptionsItemSelected(item)
     }

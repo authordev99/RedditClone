@@ -7,6 +7,10 @@
         <variable
             name="topic"
             type="com.teddybrothers.redditclone.models.Topic" />
+
+        <variable
+            name="topicViewModel"
+            type="com.teddybrothers.redditclone.viewmodels.TopicViewModel" />
     </data>
 
     <LinearLayout
@@ -19,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
+            android:text="@{topic.description}"
             tools:text="RedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditReddit" />
 
         <LinearLayout
@@ -34,15 +39,19 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@null"
-                android:contentDescription="TODO"
-                android:src="@drawable/ic_vote_up_inactive" />
+                android:onClick='@{(view) -> topicViewModel.onVoteClick(voteUp,voteCountTextView,topic,voteDown,true)}'
+                android:src="@{topic.voteUp ? @drawable/ic_vote_up_active : @drawable/ic_vote_up_inactive}"
+                tools:src="@drawable/ic_vote_up_inactive"/>
 
             <TextView
+                android:id="@+id/voteCountTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:textSize="16sp"
+                android:textColor="@{topic.voteUp ? @color/colorVoteUp : (topic.voteDown ? @color/colorVoteDown : @color/colorNoVote)}"
+                android:text="@{String.valueOf(topic.voteCount)}"
                 tools:text="0" />
 
             <ImageButton
@@ -50,12 +59,13 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@null"
-                android:contentDescription="TODO"
-                android:src="@drawable/ic_vote_down_inactive" />
+                android:onClick='@{(view) -> topicViewModel.onVoteClick(voteUp,voteCountTextView,topic,voteDown,false)}'
+                android:src="@{topic.voteDown ? @drawable/ic_vote_down_active : @drawable/ic_vote_down_inactive}"
+                tools:src="@drawable/ic_vote_down_inactive" />
 
         </LinearLayout>
 
-        <view
+        <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:background="#b5bbc1" />

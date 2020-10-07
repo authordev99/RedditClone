@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimary">#0078AE</color>
+    <color name="colorPrimaryDark">#00608B</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="colorVoteUp">#0078AE</color>
     <color name="colorVoteDown">#FF7F00</color>
-    <color name="colorNoVote">#B5bbc1</color>
+    <color name="colorNoVote">#B5BBC1</color>
+    <color name="colorLightGrey">#f5f6f9</color>
 </resources>

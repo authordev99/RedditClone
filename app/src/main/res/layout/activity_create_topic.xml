@@ -3,28 +3,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".views.CreateTopicActivity">
 
-    <include
-        layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar" />
 
-    <EditText
-        android:id="@+id/content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/background_edit_text"
+        android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:maxLength="255"
-        android:gravity="start"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:hint="Your message.."/>
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:gravity="start"
+            android:hint="An interesting title"
+            android:background="@null"
+            android:maxEms="255"
+            android:maxLength="255"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#b5bbc1" />
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@null"
+            android:padding="16dp"
+            android:gravity="start"
+            android:hint="Your text post (optional)"
+            android:maxEms="255"
+            android:maxLength="255"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/contentLength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textColor="@android:color/black"
+            android:alpha=".3"
+            android:text="255" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/post"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:text="POST"

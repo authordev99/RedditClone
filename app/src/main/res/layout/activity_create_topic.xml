@@ -56,13 +56,4 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/post"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="POST"
-        android:textAllCaps="true"
-        android:textColor="@android:color/white" />
-
 </LinearLayout>

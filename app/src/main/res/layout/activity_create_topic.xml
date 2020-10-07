@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/title"
+            android:id="@+id/topicTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
@@ -35,7 +35,7 @@
             android:background="#b5bbc1" />
 
         <EditText
-            android:id="@+id/description"
+            android:id="@+id/topicDescription"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@null"
@@ -48,12 +48,10 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/contentLength"
+            android:id="@+id/topicDescriptionLength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textColor="@android:color/black"
-            android:alpha=".3"
             android:text="255" />
 
     </LinearLayout>

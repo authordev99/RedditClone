@@ -33,7 +33,7 @@ class SessionManager(context: Context) {
         topicList = getTopicList
     }
 
-    fun saveTopic(topicList: ArrayList<Topic>) {
+    fun saveTopicList(topicList: ArrayList<Topic>) {
         editor.putString(KEY_LIST_TOPIC, Gson().toJson(topicList))
         editor.commit()
     }

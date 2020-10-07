@@ -16,13 +16,13 @@ class TopicViewModel(private val sessionManager: SessionManager) : ViewModel() {
     fun createTopic(topic: Topic) {
         val list = topicList
         list.add(topic)
-        sessionManager.saveTopic(list)
+        sessionManager.saveTopicList(list)
     }
 
-    private fun updateTopic(topic: Topic, position: Int) {
+    fun updateTopic(topic: Topic, position: Int) {
         val list = topicList
         list[position] = topic
-        sessionManager.saveTopic(list)
+        sessionManager.saveTopicList(list)
     }
 
     fun onVoteClick(

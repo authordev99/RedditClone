@@ -17,31 +17,86 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:foreground="?selectableItemBackground"
+        android:background="@android:color/white"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
+                tools:src="@tools:sample/avatars"
+                android:background="@drawable/background_profile" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Anonymous" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Posted by Anonymous"
+                    android:textColor="@color/colorNoVote"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="8dp"
+            android:text="@{topic.title}"
+            android:textSize="16sp"
+            android:maxLength="255"
+            android:textStyle="bold"
+            tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:maxLength="255"
             android:text="@{topic.description}"
-            tools:text="RedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditRedditReddit" />
+            android:textSize="12sp"
+            tools:text="@tools:sample/lorem/random" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
+            android:padding="16dp">
 
             <ImageButton
                 android:id="@+id/voteUp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@null"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:onClick='@{(view) -> topicViewModel.onVoteClick(voteUp,voteCountTextView,topic,voteDown,true)}'
                 android:src="@{topic.voteUp ? @drawable/ic_vote_up_active : @drawable/ic_vote_up_inactive}"
-                tools:src="@drawable/ic_vote_up_inactive"/>
+                tools:src="@drawable/ic_vote_up_inactive" />
 
             <TextView
                 android:id="@+id/voteCountTextView"
@@ -49,9 +104,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:textSize="16sp"
-                android:textColor="@{topic.voteUp ? @color/colorVoteUp : (topic.voteDown ? @color/colorVoteDown : @color/colorNoVote)}"
                 android:text="@{String.valueOf(topic.voteCount)}"
+                android:textColor="@{topic.voteUp ? @color/colorVoteUp : (topic.voteDown ? @color/colorVoteDown : @color/colorNoVote)}"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 tools:text="0" />
 
             <ImageButton
@@ -59,15 +115,11 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@null"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:onClick='@{(view) -> topicViewModel.onVoteClick(voteUp,voteCountTextView,topic,voteDown,false)}'
                 android:src="@{topic.voteDown ? @drawable/ic_vote_down_active : @drawable/ic_vote_down_inactive}"
                 tools:src="@drawable/ic_vote_down_inactive" />
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#b5bbc1" />
     </LinearLayout>
 </layout>

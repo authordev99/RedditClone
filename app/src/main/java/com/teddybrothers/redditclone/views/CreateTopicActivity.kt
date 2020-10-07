@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doOnTextChanged
 import com.teddybrothers.redditclone.R
 import com.teddybrothers.redditclone.models.Topic
 import com.teddybrothers.redditclone.viewmodels.TopicViewModel
@@ -31,17 +32,25 @@ class CreateTopicActivity : AppCompatActivity(), View.OnClickListener {
     private fun init() {
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            title = "Create Topic"
+            title = "Text Post"
         }
+
         post.setOnClickListener(this)
+
+        topicDescription.doOnTextChanged { text, _, _, _ ->
+            topicDescriptionLength.text = (255 - text!!.length).toString()
+        }
+
     }
 
     override fun onClick(v: View?) {
         val itemId = v?.id
         if (itemId == R.id.post) {
-            val postContent = content.text.toString()
+            val topicTitle = topicTitle.text.toString()
+            val topicDescription = topicDescription.text.toString()
             val topic = Topic().apply {
-                description = postContent
+                title = topicTitle
+                description = topicDescription
             }
             topicViewModel.createTopic(topic)
             setResult(Activity.RESULT_OK)

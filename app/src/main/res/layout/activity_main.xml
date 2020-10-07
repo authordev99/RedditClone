@@ -16,7 +16,17 @@
         android:layout_below="@+id/toolbar"
         android:background="@color/colorLightGrey"
         tools:itemCount="20"
-        tools:listitem="@layout/list_item_topic"/>
+        tools:listitem="@layout/list_item_topic" />
+
+    <TextView
+        android:id="@+id/emptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textAlignment="center"
+        android:text="No Data \nClick + to add a topic"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

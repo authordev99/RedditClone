@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.teddybrothers.redditclone.R
@@ -56,6 +57,15 @@ class MainActivity : AppCompatActivity(), RecyclerViewListener, View.OnClickList
         val topicList = topicViewModel.topicList
         //Always return a list of top 20 topics sort descending based on voteCount
         val sortedList = topicList.sortedByDescending { it.voteCount }.take(20)
+
+        //showing emptyView if list is empty
+        if (sortedList.isEmpty()) {
+            recyclerview.isVisible = false
+            emptyView.isVisible = true
+        } else {
+            recyclerview.isVisible = true
+            emptyView.isVisible = false
+        }
 
         recyclerviewAdapter.clear()
         recyclerviewAdapter.addItems(sortedList)

@@ -2,6 +2,7 @@ package com.teddybrothers.redditclone.views
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
@@ -32,9 +33,10 @@ class CreateTopicActivity : AppCompatActivity(), View.OnClickListener {
     private fun init() {
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
             title = "Text Post"
         }
-
         post.setOnClickListener(this)
 
         topicDescription.doOnTextChanged { text, _, _, _ ->
@@ -56,5 +58,14 @@ class CreateTopicActivity : AppCompatActivity(), View.OnClickListener {
             setResult(Activity.RESULT_OK)
             finish()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val itemId = item.itemId
+        if (itemId == android.R.id.home) // Press Back Icon
+        {
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

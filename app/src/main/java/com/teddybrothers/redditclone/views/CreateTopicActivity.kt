@@ -1,5 +1,6 @@
 package com.teddybrothers.redditclone.views
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +44,7 @@ class CreateTopicActivity : AppCompatActivity(), View.OnClickListener {
                 description = postContent
             }
             topicViewModel.createTopic(topic)
+            setResult(Activity.RESULT_OK)
             finish()
         }
     }

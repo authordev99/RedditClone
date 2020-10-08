@@ -13,6 +13,7 @@
 # 2. Create Topic
   - Here i created topic with title and description like Reddit
   - Allow the user to submit topics. For this challenge, a “topic” is simply a string that does not exceed 255 characters.
+  
 ![Screenshot_20201008-095918_Reddit Clone](https://user-images.githubusercontent.com/29091648/95406547-3c13e280-094d-11eb-8fae-d49a2e2d206c.jpg)
 
   

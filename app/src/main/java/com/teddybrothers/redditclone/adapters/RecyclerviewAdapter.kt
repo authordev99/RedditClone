@@ -56,13 +56,6 @@ class RecyclerviewAdapter(private val listener: RecyclerViewListener) :
         notifyDataSetChanged()
     }
 
-    fun addItem(topic : Topic) {
-        topic.let {
-            this.topicList.add(topic)
-            notifyDataSetChanged()
-        }
-    }
-
     fun updateItem(topic : Topic) {
         val oldTopic = topicList.find { it.id == topic.id }
         val oldTopicPosition = topicList.indexOf(oldTopic)
